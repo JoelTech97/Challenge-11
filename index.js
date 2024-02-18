@@ -1,7 +1,8 @@
 const inquirer = require('inquirer');
-const fs = require(fs);
+const fs = require('fs');
+const markdown = require('./utils/generateMarkdown');
 
-inquirer.Prompt([
+inquirer.prompt([
     {
         type: 'input',
         name:'Title',
@@ -23,7 +24,7 @@ inquirer.Prompt([
         message:'What is the programme used for  of your project?'
     },
     {
-        type:'Checkbox',
+        type:'List',
         name:'License',
         message:'MIT,GNU,Apache,MLP' 
     },
@@ -42,12 +43,14 @@ inquirer.Prompt([
         type:'input',
         name:'Questions',
         message: 'What questions do you have?'
+    },
+         {
+        type:'input',
+        name:'GitHub Username',
+        message: 'Enter your GitHub username?'
     }
-
-
-
-]).then((data) => {
-    const filename  = `${data.name.toLowerCase().split(' ').join('')}.json`;
+    ]).then((data) => {
+    const filename  = `${data.Title.toLowerCase().split(' ').join('')}.json`;
 
     fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
       err ? console.log(err) : console.log('Success!')
