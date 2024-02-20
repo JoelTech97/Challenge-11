@@ -1,6 +1,7 @@
-const inquirer = require('inquirer');
 const fs = require('fs');
-const markdown = require('./utils/generateMarkdown');
+const path = require('path');
+const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 inquirer.prompt([
     {
@@ -15,23 +16,23 @@ inquirer.prompt([
     },
     {
         type: 'input',
-        name:'Installation process',
+        name:'InstallationProcess',
         message:'What packages do you need to install for this project?'
     },
     {
         type: 'input',
-        name:'Usage information',
+        name:'UsageInformation',
         message:'What is the programme used for  of your project?'
     },
     {
         type:'List',
         name:'License',
-        message:'MIT,GNU,Apache,MLP' 
+        message:['MIT,GNU,Apache,MLP, None'] 
     },
     {
         type:'input',
-        name:'Contrributing',
-        message: 'Who are the people who are conteributing to the repository'
+        name:'Contributors',
+        message: 'Who are the people who are contributing to the project'
     } ,
     {
         type:'input',
@@ -46,13 +47,20 @@ inquirer.prompt([
     },
          {
         type:'input',
-        name:'GitHub Username',
+        name:'GitHubUsername',
         message: 'Enter your GitHub username?'
+    } ,
+    {
+        type: 'input',
+        name:'EmailAddress',
+        message:'What is your Email_address',
     }
     ]).then((data) => {
-    const filename  = `${data.Title.toLowerCase().split(' ').join('')}.json`;
+        const readme_md = generateMarkdown(data);
+    
+        fs.writeFile('README.md', readme_md, (err) => {
+            err ? console.log(err) : console.log('Success!');
+        });
+    });
 
-    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-      err ? console.log(err) : console.log('Success!')
-    );
-  }); 
+   
