@@ -53,7 +53,7 @@ inquirer.prompt([
     {
         type: 'input',
         name:'EmailAddress',
-        message:'What is your Email_address',
+        message:'What is your Email address',
     }
     ]).then((data) => {
         const readme_md = generateMarkdown(data);

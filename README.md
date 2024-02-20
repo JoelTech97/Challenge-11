@@ -1,26 +1,26 @@
 
-    #Challenge-11
+    #Challenge-11 populate to README file using node.js
 
     ##Description
-    Create a readMe file using Node JS and Inquirer version 6.5.0 
+    create a README file using JS 
 
     ##Installation
-    NPM i inquirer
+    npm inquirer@6.5.0
 
     ##Usage
-    JS
+    inquirerer
 
     ##License
     MIT
 
     ##Contributions
-    Joel Gog
+    Joel Gogo
 
     ## Tests
-    none
+    no tests required
 
     ## Questions
     GitHub: JoelTech97
-    Email: Joelgogo15@gmail.com
+    Email: joelgogo15@gmail.com
 
     
